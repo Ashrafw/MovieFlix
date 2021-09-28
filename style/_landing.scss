@@ -85,15 +85,16 @@
     .movie-landing {
       overflow: hidden;
       background-color: rgba(71, 71, 71, 0.342);
-      background-size: cover;
-      background-position: center;
 
-      background-repeat: no-repeat;
       margin: 20px 0;
       border-radius: 20px;
       color: rgb(255, 255, 255);
       .content-landing {
         position: relative;
+        background-size: cover;
+        background-position: center;
+
+        background-repeat: no-repeat;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
@@ -126,7 +127,7 @@
               h1 {
                 font-family: 'Martel Sans', sans-serif;
                 font-size: 2.4rem;
-                font-weight: 300;
+                font-weight: 700;
                 line-height: 1.2;
                 margin-bottom: 2px;
               }
@@ -134,15 +135,29 @@
             }
             h3 {
               font-family: 'Martel Sans', sans-serif;
-              font-size: 1.2rem;
+              font-size: 1.5rem;
+              font-weight: 300;
             }
             p {
               font-family: 'Open Sans', sans-serif;
               font-weight: 400;
+              line-height: 1.4;
+              font-size: 1.1rem;
             }
           }
         }
       }
     }
   }
+}
+
+.movie-info-page {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+  height: 50vh;
+  width: 50vw;
+  border-radius: 20px;
+  background-color: rgb(189, 0, 0);
 }

@@ -31,6 +31,7 @@ const search = document.getElementById('search');
 const imageL = document.getElementById('image');
 const overviewL = document.getElementById('overview');
 const titleL = document.getElementById('titleH1');
+const rateL = document.getElementById('rating');
 
 getMovie(API_URL);
 // getActionMovie(action_URL);
@@ -48,15 +49,15 @@ getRandomInt(1, 19);
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  console.log(Math.floor(Math.random() * (max - min + 1)) + min);
+  //   console.log(Math.floor(Math.random() * (max - min + 1)) + min);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function showMovies(movies) {
-  console.log('hello');
+  //   console.log('hello');
 
-  console.log(movies[1].backdrop_path);
-  console.log('hello');
+  //   console.log(movies[1].backdrop_path);
+  //   console.log('hello');
   var movieNum = getRandomInt(0, 19);
   var movieTitle = movies[movieNum].title;
   var movieBackDrop = movies[movieNum].backdrop_path;
@@ -70,19 +71,7 @@ function showMovies(movies) {
   }" alt="" srcset="" />`;
   overviewL.innerHTML = `${movieOverview}`;
   titleL.innerHTML = `${movieTitle}`;
-  //   movies.forEach((movie) => {
-  //     const { title, poster_path, overview, backdrop_path, vote_average } = movie;
-  //     // console.log(IMG_URL + poster_path);
-
-  //     const movieEl = document.createElement('div');
-  //     movieEl.classList.add('movie');
-  //     movieEl.innerHTML = `
-  //     <div class="movie-card">
-  //     <img src="${IMG_URL + poster_path}" alt="" srcset="" />
-  //     </div>
-  //     `;
-  //     popularMovies.appendChild(movieEl);
-  //   });
+  rateL.innerHTML = `${movieRating}`;
 }
 
 // =====================================
@@ -118,48 +107,42 @@ async function getMovieG(url) {
   showMoviesGenre(dataVar, genreName);
 }
 
-// function getMovieGenre(url, genre) {
-//   getMovieG(url);
-//   async function getMovieG(url) {
-//     const res = await fetch(url);
-//     const data = await res.json();
-//     dataVar = data.results;
-//     console.log(dataVar);
-//   }
-//   //   console.log('genre:', genre);
-
-//   console.log(dataVar, genre);
-//   showMoviesGenre(data, genre);
-// }
-
 function showMoviesGenre(movies, genret) {
   //   console.log();
-  console.log('hello');
-  console.log(movies);
-  console.log(genret);
+  //   console.log('hello');
+  //   console.log(movies);
+  //   console.log(genret);
 
   const movieSec = document.createElement('div');
-  console.log(movieSec);
+  //   console.log(movieSec);
   movieSec.classList.add('movies-genre');
-  console.log(movieSec);
+  //   console.log(movieSec);
 
   const movieList = document.createElement('div');
   movieList.classList.add('movie-list');
   movieList.classList.add('container');
-  console.log(movieList);
+  //   console.log(movieList);
 
   const genreTitle = document.createElement('h2');
-  console.log(genreTitle);
+  //   console.log(genreTitle);
   genreTitle.innerHTML = `${genret}`;
-  console.log(genreTitle);
+  //   console.log(genreTitle);
   movieList.appendChild(genreTitle);
-  console.log(movieList);
+  //   console.log(movieList);
   const movieCards = document.createElement('div');
   movieCards.classList.add('movie-cards');
-
+  movieCards.innerHTML = `<i class="fas fa-chevron-left chevron-left" id="chevron-left"></i>
+  <i class="fas fa-chevron-right chevron-right" id="chevron-right"></i>`;
   movies.forEach((movie) => {
-    const { title, poster_path, overview, backdrop_path, vote_average } = movie;
-    console.log(IMG_URL + poster_path);
+    const {
+      title,
+      poster_path,
+      overview,
+      backdrop_path,
+      vote_average,
+      release_date,
+    } = movie;
+    // console.log(IMG_URL + poster_path);
 
     const movieEl = document.createElement('div');
     movieEl.classList.add('movie');
@@ -167,6 +150,17 @@ function showMoviesGenre(movies, genret) {
       <div class="movie-card">
       <img src="${IMG_URL + poster_path}" alt="" srcset="" />
       </div>
+      <div class="info-card">
+      <div class="info-card-detail">
+      <div class="info-card-detail-it">
+        <h5 class="title-card">${title}</h5>
+        <p class="rate-card">${vote_average}</p>
+        </div>
+        <p class="date-card">Release: <span class="rate-card">${release_date}</span></p>
+      </div>
+      <p class="overview-card">${overview}</p>
+        </div>
+
       `;
     movieCards.appendChild(movieEl);
   });
@@ -189,4 +183,21 @@ form.addEventListener('submit', (e) => {
   } else {
     window.location.reload();
   }
+});
+
+const chevRight = document.querySelectorAll('.chevron-right');
+const chevleft = document.querySelectorAll('.chevron-left');
+
+chevRight.forEach((item, idx) => {
+  item.addEventListener('click', () => {
+    console.log('clicked', idx);
+  });
+});
+
+chevleft.forEach((item, idx) => {
+  console.log('hi');
+
+  item.addEventListener('click', () => {
+    console.log('clicked', idx);
+  });
 });
