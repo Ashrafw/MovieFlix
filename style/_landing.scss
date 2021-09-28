@@ -7,7 +7,7 @@
     //   background-position: center;
     //   background-size: cover;
     //   background-repeat: no-repeat;
-    background-color: rgb(0, 0, 0);
+    background-color: $color-1;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -82,10 +82,14 @@
         }
       }
     }
+    // margin: 0 0 20px 0;
     .movie-landing {
+      box-shadow: 0 0 3px #fff, 0 0 5px #fff, 0 0 10px #fff, 0 0 20px $color-2,
+        0 0 35px $color-2, 0 0 30px $color-2;
+      //   margin-bottom: 45px;
       overflow: hidden;
       background-color: rgba(71, 71, 71, 0.342);
-
+      //   padding: 20px 0;
       margin: 20px 0;
       border-radius: 20px;
       color: rgb(255, 255, 255);

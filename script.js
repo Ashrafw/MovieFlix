@@ -1,5 +1,5 @@
 const API_URL =
-  'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
+  'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=2';
 const IMG_URL = 'https://image.tmdb.org/t/p/w1280';
 const IMG_URL_Poster = 'https://image.tmdb.org/t/p/w1280';
 
