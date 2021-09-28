@@ -1,0 +1,75 @@
+.landing {
+  height: 75vh;
+  //   background-image: url('/images/venom22.jpg');
+  //   background-position: center;
+  //   background-size: cover;
+  //   background-repeat: no-repeat;
+  background-color: rgb(41, 41, 41);
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    .logo {
+      font-size: 3rem;
+      font-family: 'Martel Sans', sans-serif;
+      font-weight: 900;
+      color: rgb(255, 0, 0);
+      span {
+        font-weight: 800;
+        color: rgb(255, 153, 153);
+      }
+    }
+    .nav-links {
+      a {
+        text-decoration: none;
+        color: rgb(194, 194, 194);
+        padding: 0 30px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+      }
+      a:hover {
+        color: white;
+        font-weight: 400;
+      }
+    }
+    .search {
+      display: flex;
+      justify-content: flex-end;
+      width: 10%;
+      color: rgb(255, 255, 255);
+
+      input {
+        background-color: transparent;
+        margin: 0 5px;
+        font-size: 0.85rem;
+        padding: 5px 15px;
+        width: 130px;
+        border: solid 1px rgb(134, 134, 134);
+        border-radius: 20px;
+        font-family: 'Open Sans', sans-serif;
+        color: rgb(228, 228, 228);
+        font-weight: 400;
+        transition: all 0.3s ease;
+      }
+      input:focus {
+        outline: none;
+        width: 240px;
+        border: solid 1px rgb(189, 0, 0);
+      }
+
+      a {
+        i {
+          text-decoration: none;
+          position: absolute;
+          color: white;
+          right: 7px;
+          transform: translate(-50%, 50%);
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
