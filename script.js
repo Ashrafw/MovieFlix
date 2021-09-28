@@ -131,8 +131,9 @@ function showMoviesGenre(movies, genret) {
   //   console.log(movieList);
   const movieCards = document.createElement('div');
   movieCards.classList.add('movie-cards');
-  movieCards.innerHTML = `<i class="fas fa-chevron-left chevron-left" id="chevron-left"></i>
-  <i class="fas fa-chevron-right chevron-right" id="chevron-right"></i>`;
+  movieCards.innerHTML = `<button class="chevron-left" id="chevron-left"><i class="fas fa-chevron-left" ></i></button>
+  <button class="chevron-right" id="chevron-right"><i class="fas fa-chevron-right "></i></button>
+  `;
   movies.forEach((movie) => {
     const {
       title,
@@ -185,8 +186,8 @@ form.addEventListener('submit', (e) => {
   }
 });
 
-const chevRight = document.querySelectorAll('.chevron-right');
-const chevleft = document.querySelectorAll('.chevron-left');
+const chevRight = document.querySelectorAll('#chevron-right');
+const chevleft = document.querySelectorAll('#chevron-left');
 
 chevRight.forEach((item, idx) => {
   item.addEventListener('click', () => {
