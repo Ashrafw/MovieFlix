@@ -3,14 +3,24 @@
 // font-family: 'Martel Sans', sans-serif;
 
 // font-family: 'Open Sans', sans-serif;
-
+$color-1: #030706;
+$color-2: #2d4f4c;
+$color-3: #b64515;
+$color-4: #d2d4d2;
+$color-5: #c49045;
+$color-6: #41a5be;
+$color-7: #253dc5;
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+body {
+  overflow-x: hidden;
 }
 .container {
   width: 90%;
   margin: auto;
 }
 @import 'landing';
+@import 'movie-list';
