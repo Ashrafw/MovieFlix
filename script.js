@@ -1,6 +1,7 @@
 const API_URL =
   'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 const IMG_URL = 'https://image.tmdb.org/t/p/w1280';
+const IMG_URL_Poster = 'https://image.tmdb.org/t/p/w1280';
 
 const SEARCH_URL =
   'https://api.themoviedb.org/3/search/movie?api_key=9c9a236c211df46e640b24f29796b6c0&query=';
@@ -11,7 +12,7 @@ const Kids =
 const Drama =
   'https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 const Action =
-  'https://api.themoviedb.org/3/discover/movie?with_genres=28&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
+  'https://api.themoviedb.org/3/discover/movie?with_genres=28&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=2';
 const Crime =
   'https://api.themoviedb.org/3/discover/movie?with_genres=80&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 const Thriller =
@@ -22,15 +23,14 @@ const Documentary =
   'https://api.themoviedb.org/3/discover/movie?with_genres=99&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 
 const popularMovies = document.getElementById('popular');
-const actionMovies = document.getElementById('action');
-const kidsMovies = document.getElementById('kids');
-const romanceMovies = document.getElementById('romance');
-const dramaMovies = document.getElementById('drama');
-const crimeMovies = document.getElementById('crime');
-const thrillerMovies = document.getElementById('thriller');
+
+const landingBg = document.getElementById('landing');
 
 const form = document.getElementById('form-home');
 const search = document.getElementById('search');
+const imageL = document.getElementById('image');
+const overviewL = document.getElementById('overview');
+const titleL = document.getElementById('titleH1');
 
 getMovie(API_URL);
 // getActionMovie(action_URL);
@@ -44,20 +44,45 @@ async function getMovie(url) {
   showMovies(data.results);
 }
 
-function showMovies(movies) {
-  movies.forEach((movie) => {
-    const { title, poster_path, overview, backdrop_path, vote_average } = movie;
-    // console.log(IMG_URL + poster_path);
+getRandomInt(1, 19);
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  console.log(Math.floor(Math.random() * (max - min + 1)) + min);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-    const movieEl = document.createElement('div');
-    movieEl.classList.add('movie');
-    movieEl.innerHTML = `
-    <div class="movie-card">
-    <img src="${IMG_URL + poster_path}" alt="" srcset="" />
-    </div>
-    `;
-    popularMovies.appendChild(movieEl);
-  });
+function showMovies(movies) {
+  console.log('hello');
+
+  console.log(movies[1].backdrop_path);
+  console.log('hello');
+  var movieNum = getRandomInt(0, 19);
+  var movieTitle = movies[movieNum].title;
+  var movieBackDrop = movies[movieNum].backdrop_path;
+  var movieRating = movies[movieNum].vote_average;
+  var movieOverview = movies[movieNum].overview;
+  var moviePoster = movies[movieNum].poster_path;
+
+  landingBg.style.backgroundImage = `url('${IMG_URL + movieBackDrop}')`;
+  imageL.innerHTML = `<img src="${
+    IMG_URL_Poster + moviePoster
+  }" alt="" srcset="" />`;
+  overviewL.innerHTML = `${movieOverview}`;
+  titleL.innerHTML = `${movieTitle}`;
+  //   movies.forEach((movie) => {
+  //     const { title, poster_path, overview, backdrop_path, vote_average } = movie;
+  //     // console.log(IMG_URL + poster_path);
+
+  //     const movieEl = document.createElement('div');
+  //     movieEl.classList.add('movie');
+  //     movieEl.innerHTML = `
+  //     <div class="movie-card">
+  //     <img src="${IMG_URL + poster_path}" alt="" srcset="" />
+  //     </div>
+  //     `;
+  //     popularMovies.appendChild(movieEl);
+  //   });
 }
 
 // =====================================
@@ -68,7 +93,7 @@ getMovieG(Romance);
 getMovieG(Thriller);
 getMovieG(Kids);
 getMovieG(Crime);
-getMovieG(Documentary);
+// getMovieG(Documentary);
 
 async function getMovieG(url) {
   const res = await fetch(url);

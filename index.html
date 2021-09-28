@@ -11,24 +11,42 @@
     <title>MovieFlix</title>
   </head>
   <body>
-    <section class="landing">
-      <nav class="container">
-        <div class="logo">MOVIE<span>Flix</span></div>
-        <div class="nav-links">
-          <a href="">Home</a>
-          <a href="">Movies</a>
-          <a href="">Tv Shows</a>
-          <a href="">Upcoming</a>
-        </div>
-        <div class="form-search">
-          <form id="form-home">
-            <input id="search" type="text" placeholder="Search" />
-            <a href=""><i class="fas fa-search"></i></a>
-          </form>
-        </div>
-      </nav>
-    </section>
+    <section class="main">
+      <div class="landing container">
+        <nav class="">
+          <div class="logo">MOVIE<span>Flix</span></div>
+          <div class="nav-links">
+            <a href="">Home</a>
+            <a href="">Movies</a>
+            <a href="">Tv Shows</a>
+            <a href="">Upcoming</a>
+          </div>
+          <div class="form-search">
+            <form id="form-home">
+              <input id="search" type="text" placeholder="Search" />
+              <a href=""><i class="fas fa-search"></i></a>
+            </form>
+          </div>
+        </nav>
 
+        <div class="movie-landing">
+          <div class="content-landing" id="landing">
+            <div class="details">
+              <div class="image" id="image">
+                <!-- <img src="/images/wp6988363.webp" alt="" srcset="" /> -->
+              </div>
+              <div class="info">
+                <div class="title"><h1 id="titleH1"></h1></div>
+
+                <h3>Rating: <span id="rating"></span></h3>
+
+                <p class="overview" id="overview"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <div id="movieApi"></div>
   </body>
   <script src="script.js"></script>
