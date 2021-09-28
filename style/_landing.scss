@@ -35,39 +35,41 @@
         font-weight: 400;
       }
     }
-    .search {
-      display: flex;
-      justify-content: flex-end;
-      width: 10%;
-      color: rgb(255, 255, 255);
+    .form-search {
+      form {
+        display: flex;
+        justify-content: flex-end;
+        width: 10%;
+        color: rgb(255, 255, 255);
 
-      input {
-        background-color: transparent;
-        margin: 0 5px;
-        font-size: 0.85rem;
-        padding: 5px 15px;
-        width: 130px;
-        border: solid 1px rgb(134, 134, 134);
-        border-radius: 20px;
-        font-family: 'Open Sans', sans-serif;
-        color: rgb(228, 228, 228);
-        font-weight: 400;
-        transition: all 0.3s ease;
-      }
-      input:focus {
-        outline: none;
-        width: 240px;
-        border: solid 1px rgb(189, 0, 0);
-      }
+        input {
+          background-color: transparent;
+          margin: 0 5px;
+          font-size: 0.85rem;
+          padding: 5px 15px;
+          width: 130px;
+          border: solid 1px rgb(134, 134, 134);
+          border-radius: 20px;
+          font-family: 'Open Sans', sans-serif;
+          color: rgb(228, 228, 228);
+          font-weight: 400;
+          transition: all 0.3s ease;
+        }
+        input:focus {
+          outline: none;
+          width: 240px;
+          border: solid 1px rgb(189, 0, 0);
+        }
 
-      a {
-        i {
-          text-decoration: none;
-          position: absolute;
-          color: white;
-          right: 7px;
-          transform: translate(-50%, 50%);
-          font-size: 1rem;
+        a {
+          i {
+            text-decoration: none;
+            position: absolute;
+            color: white;
+            right: 7px;
+            transform: translate(-50%, 50%);
+            font-size: 1rem;
+          }
         }
       }
     }
