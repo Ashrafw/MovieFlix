@@ -1,5 +1,5 @@
 const API_URL =
-  'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=2';
+  'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 const IMG_URL = 'https://image.tmdb.org/t/p/w1280';
 const IMG_URL_Poster = 'https://image.tmdb.org/t/p/w1280';
 
@@ -78,11 +78,12 @@ function showMovies(movies) {
 var dataVar = {};
 const movieSectionMain = document.getElementById('movieApi');
 getMovieG(Action);
-getMovieG(Romance);
-getMovieG(Thriller);
-getMovieG(Kids);
-getMovieG(Crime);
+// getMovieG(Romance);
+// getMovieG(Thriller);
+// getMovieG(Kids);
+// getMovieG(Crime);
 // getMovieG(Documentary);
+let idNum = 0;
 
 async function getMovieG(url) {
   const res = await fetch(url);
@@ -93,6 +94,8 @@ async function getMovieG(url) {
     var genreName = 'Romance';
   } else if (url === Action) {
     var genreName = 'Action';
+    let idNum = 1;
+    showMoviesGenre(dataVar, genreName, idNum);
   } else if (url === Drama) {
     var genreName = 'Drama';
   } else if (url === Thriller) {
@@ -104,10 +107,14 @@ async function getMovieG(url) {
   } else if (url === Crime) {
     var genreName = 'Crime';
   }
-  showMoviesGenre(dataVar, genreName);
 }
 
-function showMoviesGenre(movies, genret) {
+var movieCards1;
+
+var chevLeft;
+var chevRight;
+console.log(chevLeft);
+function showMoviesGenre(movies, genret, idNum) {
   //   console.log();
   //   console.log('hello');
   //   console.log(movies);
@@ -131,9 +138,13 @@ function showMoviesGenre(movies, genret) {
   //   console.log(movieList);
   const movieCards = document.createElement('div');
   movieCards.classList.add('movie-cards');
-  movieCards.innerHTML = `<button class="chevron-left" id="chevron-left"><i class="fas fa-chevron-left" ></i></button>
-  <button class="chevron-right" id="chevron-right"><i class="fas fa-chevron-right "></i></button>
+  movieCards.classList.add(`movie-cards`);
+  movieCards.innerHTML = `<button class="chevron-left" id="chevron-left-${idNum}"><i class="fas fa-chevron-left" ></i></button>
+  <button class="chevron-right" id="chevron-right-${idNum}"><i class="fas fa-chevron-right "></i></button>
   `;
+  const movieCardsConatiner = document.createElement('div');
+  movieCardsConatiner.classList.add(`movie-cards-container`);
+  movieCardsConatiner.classList.add(`movie-cards-container-${idNum}`);
   movies.forEach((movie) => {
     const {
       title,
@@ -163,11 +174,87 @@ function showMoviesGenre(movies, genret) {
         </div>
 
       `;
-    movieCards.appendChild(movieEl);
+    movieCardsConatiner.appendChild(movieEl);
   });
+  movieCards.appendChild(movieCardsConatiner);
   movieList.appendChild(movieCards);
   movieSec.appendChild(movieList);
   movieSectionMain.appendChild(movieSec);
+
+  var movieCards1 = document.querySelector('.movie-cards-container-1');
+  var chevLeft = document.getElementById('chevron-left-1');
+  var chevRight = document.getElementById('chevron-right-1');
+  var clientWidth1 = movieCards1.clientWidth;
+  // length if all movie cards
+  var movieWidth = 5580;
+  // travel lengnth require to translate in px
+  var travel = 5580 - clientWidth1;
+  //number of travels required to move
+  var moveNum = travel / clientWidth1;
+  // initalize move
+  var move = 0;
+  // screen width reduce card plus padding, for new travel interval
+  var moveFix = clientWidth1 - 300;
+  var move = 0;
+
+  chevRight.addEventListener('click', () => {
+    //  if the remainf distance is less than screen width
+    if (move < travel && travel - move < moveFix && travel - move > 200) {
+      clientWidth1;
+      console.log(
+        'if statement: (m move):',
+        move,
+        ', travel',
+        travel,
+        'travel-move',
+        travel - move,
+        'moveFix',
+        moveFix
+      );
+      var n = travel - move;
+      move = move + n;
+      // moveFix = move + n;
+      console.log('if statement: (m move):', move, ', n', n);
+      movieCards1.style.transform = `translate(-${move}px)`;
+    } else if (move < travel && travel - move > moveFix) {
+      console.log(
+        'elseif statement: (m move):',
+        move,
+        ', travel',
+        travel,
+        ' travel-move',
+        travel - move,
+        'moveFix',
+        moveFix
+      );
+      move = move + moveFix;
+      movieCards1.style.transform = `translate(-${move}px)`;
+
+      console.log('elseif statement:--  (move):', move);
+    }
+
+    console.log('clicked');
+  });
+  chevLeft.addEventListener('click', () => {
+    if (move > 0) {
+      // console.log('move:', move)
+
+      console.log(
+        'move:',
+        move,
+        'moveFix',
+        moveFix,
+        'movie-moveFix',
+        move - moveFix
+      );
+
+      move = move - moveFix;
+      movieCards1.style.transform = `translate(-${move}px)`;
+    }
+    moveFix = clientWidth1 - 300;
+    console.log('clicked');
+  });
+  // console.log(chevLeft);
 }
 
 form.addEventListener('submit', (e) => {
@@ -186,19 +273,36 @@ form.addEventListener('submit', (e) => {
   }
 });
 
-const chevRight = document.querySelectorAll('#chevron-right');
-const chevleft = document.querySelectorAll('#chevron-left');
+// const chevRight = document.querySelectorAll('.link-test');
+// const chevleft = document.querySelectorAll('.chevron-left');
+// console.log(chevRight);
+// console.log(chevleft);
 
-chevRight.forEach((item, idx) => {
-  item.addEventListener('click', () => {
-    console.log('clicked', idx);
-  });
-});
+// const movieCards1 = document.querySelector('.movie-cards-1');
 
-chevleft.forEach((item, idx) => {
-  console.log('hi');
+// const chevLeft = document.getElementById('chevron-left-1');
+// const chevRight = document.getElementById('chevron-right-1');
+// const chevleft = document.querySelector('#chevron-left-1');
+console.log(chevLeft);
+console.log(chevLeft);
+console.log(chevLeft);
 
-  item.addEventListener('click', () => {
-    console.log('clicked', idx);
-  });
-});
+// let iRight = 0;
+// let iLeft = 0;
+
+// chevRight.forEach((item) => {
+//   iRight++;
+//   console.log(iRight);
+//   item.addEventListener('mouseover', () => {
+//     console.log('clicked');
+//   });
+// });
+
+// chevleft.forEach((item, idx) => {
+//   console.log('hi');
+//   iLeft++;
+//   console.log(iLeft);
+//   item.addEventListener('mouseover', () => {
+//     console.log('clicked', idx);
+//   });
+// });

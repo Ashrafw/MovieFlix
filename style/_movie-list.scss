@@ -14,12 +14,17 @@
       font-family: 'Open Sans', sans-serif;
     }
     .movie-cards {
-      display: grid;
-      grid-gap: 20px;
-      grid-template-columns: repeat(20, 1fr);
       justify-content: space-between;
       position: relative;
       padding: 10px 4px;
+
+      .movie-cards-container {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(20, 1fr);
+        transition: all 0.6s ease-in-out;
+      }
+
       .chevron-left {
         z-index: 100;
         padding: 10px;
