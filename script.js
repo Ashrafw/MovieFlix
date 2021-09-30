@@ -21,6 +21,8 @@ const Romance =
   'https://api.themoviedb.org/3/discover/movie?with_genres=10749&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 const Documentary =
   'https://api.themoviedb.org/3/discover/movie?with_genres=99&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=3';
+const Popular =
+  'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 
 const popularMovies = document.getElementById('popular');
 
@@ -121,7 +123,7 @@ docBtn.addEventListener('click', (e) => {
 romanceBtn.addEventListener('click', (e) => {
   removeActive();
   e.target.classList.add('active');
-  console.log('clikced');
+  // console.log('clikced');
   movieSectionMain.innerHTML = ``;
   getMovieG(Romance);
 });
@@ -137,6 +139,13 @@ kidsBtn.addEventListener('click', (e) => {
   e.target.classList.add('active');
   movieSectionMain.innerHTML = ``;
   getMovieG(Kids);
+});
+
+popularBtn.addEventListener('click', (e) => {
+  removeActive();
+  e.target.classList.add('active');
+  movieSectionMain.innerHTML = ``;
+  getMovieG(Popular);
 });
 
 async function getMovieG(url) {
@@ -172,6 +181,10 @@ async function getMovieG(url) {
     var genreName = 'Crime';
     let idNum = 1;
     showMoviesGenre(dataVar, genreName, idNum);
+  } else if (url === Popular) {
+    var genreName = 'Popular';
+    let idNum = 1;
+    showMoviesGenre(dataVar, genreName, idNum);
   }
 }
 
@@ -181,7 +194,7 @@ var movieCards4;
 var chevLeft;
 var chevRight;
 var movieSec;
-console.log(chevLeft);
+// console.log(chevLeft);
 function showMoviesGenre(movies, genret, idNum) {
   //   console.log();
   //   console.log('hello');
@@ -273,7 +286,7 @@ function showMoviesGenre(movies, genret, idNum) {
 
 function Chevron(movieCards1) {
   // var movieCards1 = document.querySelector('.movie-cards-container-1');
-  console.log(movieCards1);
+  // console.log(movieCards1);
   var chevLeft1 = document.getElementById('chevron-left-1');
   var chevRight1 = document.getElementById('chevron-right-1');
   var clientWidth1 = movieCards1.clientWidth;
@@ -293,63 +306,63 @@ function Chevron(movieCards1) {
     //  if the remainf distance is less than screen width
     if (move < travel && travel - move < moveFix && travel - move > 300) {
       clientWidth1;
-      console.log(
-        'if statement: (m move):',
-        move,
-        ', travel',
-        travel,
-        'travel-move',
-        travel - move,
-        'moveFix',
-        moveFix
-      );
+      // console.log(
+      //   'if statement: (m move):',
+      //   move,
+      //   ', travel',
+      //   travel,
+      //   'travel-move',
+      //   travel - move,
+      //   'moveFix',
+      //   moveFix
+      // );
       var n = travel - move;
       move = move + n;
       // moveFix = move + n;
-      console.log('if statement: (m move):', move, ', n', n);
+      // console.log('if statement: (m move):', move, ', n', n);
       movieCards1.style.transform = `translate(-${move}px)`;
     } else if (move < travel && travel - move > moveFix) {
-      console.log(
-        'elseif statement: (m move):',
-        move,
-        ', travel',
-        travel,
-        ' travel-move',
-        travel - move,
-        'moveFix',
-        moveFix
-      );
+      // console.log(
+      //   'elseif statement: (m move):',
+      //   move,
+      //   ', travel',
+      //   travel,
+      //   ' travel-move',
+      //   travel - move,
+      //   'moveFix',
+      //   moveFix
+      // );
       move = move + moveFix;
       movieCards1.style.transform = `translate(-${move}px)`;
 
-      console.log('elseif statement:--  (move):', move);
+      // console.log('elseif statement:--  (move):', move);
     }
 
-    console.log('clicked');
+    // console.log('clicked');
   });
   chevLeft1.addEventListener('click', () => {
     if (move > 0) {
       // console.log('move:', move)
 
-      console.log(
-        'move:',
-        move,
-        'moveFix',
-        moveFix,
-        'movie-moveFix',
-        move - moveFix
-      );
+      // console.log(
+      //   'move:',
+      //   move,
+      //   'moveFix',
+      //   moveFix,
+      //   'movie-moveFix',
+      //   move - moveFix
+      // );
 
       move = move - moveFix;
       movieCards1.style.transform = `translate(-${move}px)`;
     }
     moveFix = clientWidth1 - 300;
-    console.log('clicked');
+    // console.log('clicked');
   });
 }
 function thrillerChevron(movieCards) {
   // var movieCards1 = document.querySelector('.movie-cards-container-1');
-  console.log(movieCards);
+  // console.log(movieCards);
   var chevLeft = document.getElementById('chevron-left-4');
   var chevRight = document.getElementById('chevron-right-4');
   var clientWidth1 = movieCards.clientWidth;
@@ -369,36 +382,36 @@ function thrillerChevron(movieCards) {
     //  if the remainf distance is less than screen width
     if (move < travel && travel - move < moveFix && travel - move > 300) {
       clientWidth1;
-      console.log(
-        'if statement: (m move):',
-        move,
-        ', travel',
-        travel,
-        'travel-move',
-        travel - move,
-        'moveFix',
-        moveFix
-      );
+      // console.log(
+      //   'if statement: (m move):',
+      //   move,
+      //   ', travel',
+      //   travel,
+      //   'travel-move',
+      //   travel - move,
+      //   'moveFix',
+      //   moveFix
+      // );
       var n = travel - move;
       move = move + n;
       // moveFix = move + n;
-      console.log('if statement: (m move):', move, ', n', n);
+      // console.log('if statement: (m move):', move, ', n', n);
       movieCards.style.transform = `translate(-${move}px)`;
     } else if (move < travel && travel - move > moveFix) {
-      console.log(
-        'elseif statement: (m move):',
-        move,
-        ', travel',
-        travel,
-        ' travel-move',
-        travel - move,
-        'moveFix',
-        moveFix
-      );
+      // console.log(
+      //   'elseif statement: (m move):',
+      //   move,
+      //   ', travel',
+      //   travel,
+      //   ' travel-move',
+      //   travel - move,
+      //   'moveFix',
+      //   moveFix
+      // );
       move = move + moveFix;
       movieCards.style.transform = `translate(-${move}px)`;
 
-      console.log('elseif statement:--  (move):', move);
+      // console.log('elseif statement:--  (move):', move);
     }
 
     console.log('clicked');
@@ -407,27 +420,27 @@ function thrillerChevron(movieCards) {
     if (move > 0) {
       // console.log('move:', move)
 
-      console.log(
-        'move:',
-        move,
-        'moveFix',
-        moveFix,
-        'movie-moveFix',
-        move - moveFix
-      );
+      // console.log(
+      //   'move:',
+      //   move,
+      //   'moveFix',
+      //   moveFix,
+      //   'movie-moveFix',
+      //   move - moveFix
+      // );
 
       move = move - moveFix;
       movieCards.style.transform = `translate(-${move}px)`;
     }
     moveFix = clientWidth1 - 300;
-    console.log('clicked');
+    // console.log('clicked');
   });
 }
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  console.log(search.value);
+  // console.log(search.value);
 
   const searchItem = search.value;
 
