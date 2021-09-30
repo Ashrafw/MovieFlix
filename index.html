@@ -18,14 +18,14 @@
           <div class="nav-links">
             <a class="link-test" href="">Home</a>
             <a class="link-test" href="">Movies</a>
-            <a class="link-test" href="">Tv Shows</a>
+            <a class="link-test" href="">Popular</a>
             <a class="link-test" href="">Upcoming</a>
           </div>
           <div class="form-search">
             <form id="form-home">
-              <input id="search" type="text" placeholder="Search" />
-              <a href=""><i class="fas fa-search"></i></a>
+              <input id="search" type="text" placeholder="Search " />
             </form>
+            <p><i class="fas fa-search"></i></p>
           </div>
         </nav>
 
@@ -47,6 +47,23 @@
         </div>
       </div>
     </section>
+    <div class="selections">
+      <div class="selection-genre container">
+        <h1>
+          Explore all types of Genres with
+          <span class="logo">MOVIE<span>Flix</span></span>
+        </h1>
+        <div class="selection-genre-set">
+          <button class="active" id="action">Action</button>
+          <button id="popular">Popular</button>
+          <button id="thriller">Thriller</button>
+          <button id="kids">Kids</button>
+          <button id="crime">Crime</button>
+          <button id="romance">Romance</button>
+          <button id="documentary">Documentary</button>
+        </div>
+      </div>
+    </div>
 
     <!-- <div class="info-card">
       <div class="info-card-detail">
@@ -60,7 +77,7 @@
     </div> -->
 
     <!-- <div class="movie-info-page"></div> -->
-    <div id="movieApi"></div>
+    <div id="movieApi" class="movieApi"></div>
   </body>
   <script src="script.js"></script>
 </html>

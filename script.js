@@ -12,7 +12,7 @@ const Kids =
 const Drama =
   'https://api.themoviedb.org/3/discover/movie?with_genres=18&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 const Action =
-  'https://api.themoviedb.org/3/discover/movie?with_genres=28&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=2';
+  'https://api.themoviedb.org/3/discover/movie?with_genres=28&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 const Crime =
   'https://api.themoviedb.org/3/discover/movie?with_genres=80&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 const Thriller =
@@ -20,7 +20,7 @@ const Thriller =
 const Romance =
   'https://api.themoviedb.org/3/discover/movie?with_genres=10749&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
 const Documentary =
-  'https://api.themoviedb.org/3/discover/movie?with_genres=99&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=1';
+  'https://api.themoviedb.org/3/discover/movie?with_genres=99&sort_by=popularity.desc&api_key=9c9a236c211df46e640b24f29796b6c0&page=3';
 
 const popularMovies = document.getElementById('popular');
 
@@ -76,14 +76,68 @@ function showMovies(movies) {
 
 // =====================================
 var dataVar = {};
+// const movieSectionMain = document.getElementById('movieApi');
+// getMovieG(Romance);
+const actionBtn = document.getElementById('action');
+const thrillerBtn = document.getElementById('thriller');
+const crimeBtn = document.getElementById('crime');
+const popularBtn = document.getElementById('popular');
+const romanceBtn = document.getElementById('romance');
+const kidsBtn = document.getElementById('kids');
+const docBtn = document.getElementById('documentary');
+let idNum = 0;
 const movieSectionMain = document.getElementById('movieApi');
 getMovieG(Action);
-// getMovieG(Romance);
-// getMovieG(Thriller);
-// getMovieG(Kids);
-// getMovieG(Crime);
-// getMovieG(Documentary);
-let idNum = 0;
+
+function removeActive() {
+  actionBtn.classList.remove('active');
+  thrillerBtn.classList.remove('active');
+  crimeBtn.classList.remove('active');
+  popularBtn.classList.remove('active');
+  romanceBtn.classList.remove('active');
+  kidsBtn.classList.remove('active');
+  docBtn.classList.remove('active');
+  // movieSec.style.opacity = '0';
+  movieSec.classList.remove('active');
+}
+thrillerBtn.addEventListener('click', (e) => {
+  movieSectionMain.innerHTML = ``;
+  removeActive();
+  e.target.classList.add('active');
+  getMovieG(Thriller);
+});
+actionBtn.addEventListener('click', (e) => {
+  removeActive();
+  e.target.classList.add('active');
+  movieSectionMain.innerHTML = ``;
+  getMovieG(Action);
+});
+docBtn.addEventListener('click', (e) => {
+  removeActive();
+  e.target.classList.add('active');
+  movieSectionMain.innerHTML = ``;
+  getMovieG(Documentary);
+});
+romanceBtn.addEventListener('click', (e) => {
+  removeActive();
+  e.target.classList.add('active');
+  console.log('clikced');
+  movieSectionMain.innerHTML = ``;
+  getMovieG(Romance);
+});
+crimeBtn.addEventListener('click', (e) => {
+  removeActive();
+  e.target.classList.add('active');
+  movieSectionMain.innerHTML = ``;
+  getMovieG(Crime);
+});
+
+kidsBtn.addEventListener('click', (e) => {
+  removeActive();
+  e.target.classList.add('active');
+  movieSectionMain.innerHTML = ``;
+  getMovieG(Kids);
+});
 
 async function getMovieG(url) {
   const res = await fetch(url);
@@ -92,27 +146,41 @@ async function getMovieG(url) {
   dataVar = data.results;
   if (url === Romance) {
     var genreName = 'Romance';
+    let idNum = 1;
+    showMoviesGenre(dataVar, genreName, idNum);
   } else if (url === Action) {
     var genreName = 'Action';
     let idNum = 1;
     showMoviesGenre(dataVar, genreName, idNum);
   } else if (url === Drama) {
     var genreName = 'Drama';
+    let idNum = 1;
+    showMoviesGenre(dataVar, genreName, idNum);
   } else if (url === Thriller) {
     var genreName = 'Thriller';
+    let idNum = 1;
+    showMoviesGenre(dataVar, genreName, idNum);
   } else if (url === Documentary) {
     var genreName = 'Documentary';
+    let idNum = 1;
+    showMoviesGenre(dataVar, genreName, idNum);
   } else if (url === Kids) {
     var genreName = 'Kids';
+    let idNum = 1;
+    showMoviesGenre(dataVar, genreName, idNum);
   } else if (url === Crime) {
     var genreName = 'Crime';
+    let idNum = 1;
+    showMoviesGenre(dataVar, genreName, idNum);
   }
 }
 
 var movieCards1;
+var movieCards4;
 
 var chevLeft;
 var chevRight;
+var movieSec;
 console.log(chevLeft);
 function showMoviesGenre(movies, genret, idNum) {
   //   console.log();
@@ -120,9 +188,11 @@ function showMoviesGenre(movies, genret, idNum) {
   //   console.log(movies);
   //   console.log(genret);
 
-  const movieSec = document.createElement('div');
+  movieSec = document.createElement('div');
   //   console.log(movieSec);
   movieSec.classList.add('movies-genre');
+
+  movieSec.classList.add('active');
   //   console.log(movieSec);
 
   const movieList = document.createElement('div');
@@ -145,6 +215,7 @@ function showMoviesGenre(movies, genret, idNum) {
   const movieCardsConatiner = document.createElement('div');
   movieCardsConatiner.classList.add(`movie-cards-container`);
   movieCardsConatiner.classList.add(`movie-cards-container-${idNum}`);
+
   movies.forEach((movie) => {
     const {
       title,
@@ -180,10 +251,31 @@ function showMoviesGenre(movies, genret, idNum) {
   movieList.appendChild(movieCards);
   movieSec.appendChild(movieList);
   movieSectionMain.appendChild(movieSec);
-
+  // if (idNum === 1) {
   var movieCards1 = document.querySelector('.movie-cards-container-1');
-  var chevLeft = document.getElementById('chevron-left-1');
-  var chevRight = document.getElementById('chevron-right-1');
+  // movieSec.style.opacity = '0.8';
+  // }
+  // if (idNum === 4) {
+  //   var movieCards4 = document.querySelector('.movie-cards-container-4');
+  // }
+  // // setTimeout(actionChevron(movieCards1), 1000);
+  setTimeout(Chevron(movieCards1), 1000);
+  // setTimeout(function () {
+  //   actionChevron(movieCards1);
+
+  //   thrillerChevron(movieCards4);
+  // }, 1000);
+}
+
+// function eventListenerScroll(){
+
+// }
+
+function Chevron(movieCards1) {
+  // var movieCards1 = document.querySelector('.movie-cards-container-1');
+  console.log(movieCards1);
+  var chevLeft1 = document.getElementById('chevron-left-1');
+  var chevRight1 = document.getElementById('chevron-right-1');
   var clientWidth1 = movieCards1.clientWidth;
   // length if all movie cards
   var movieWidth = 5580;
@@ -197,9 +289,9 @@ function showMoviesGenre(movies, genret, idNum) {
   var moveFix = clientWidth1 - 300;
   var move = 0;
 
-  chevRight.addEventListener('click', () => {
+  chevRight1.addEventListener('click', () => {
     //  if the remainf distance is less than screen width
-    if (move < travel && travel - move < moveFix && travel - move > 200) {
+    if (move < travel && travel - move < moveFix && travel - move > 300) {
       clientWidth1;
       console.log(
         'if statement: (m move):',
@@ -235,7 +327,7 @@ function showMoviesGenre(movies, genret, idNum) {
 
     console.log('clicked');
   });
-  chevLeft.addEventListener('click', () => {
+  chevLeft1.addEventListener('click', () => {
     if (move > 0) {
       // console.log('move:', move)
 
@@ -254,7 +346,82 @@ function showMoviesGenre(movies, genret, idNum) {
     moveFix = clientWidth1 - 300;
     console.log('clicked');
   });
-  // console.log(chevLeft);
+}
+function thrillerChevron(movieCards) {
+  // var movieCards1 = document.querySelector('.movie-cards-container-1');
+  console.log(movieCards);
+  var chevLeft = document.getElementById('chevron-left-4');
+  var chevRight = document.getElementById('chevron-right-4');
+  var clientWidth1 = movieCards.clientWidth;
+  // length if all movie cards
+  var movieWidth = 5580;
+  // travel lengnth require to translate in px
+  var travel = 5580 - clientWidth1;
+  //number of travels required to move
+  var moveNum = travel / clientWidth1;
+  // initalize move
+  var move = 0;
+  // screen width reduce card plus padding, for new travel interval
+  var moveFix = clientWidth1 - 300;
+  var move = 0;
+
+  chevRight.addEventListener('click', () => {
+    //  if the remainf distance is less than screen width
+    if (move < travel && travel - move < moveFix && travel - move > 300) {
+      clientWidth1;
+      console.log(
+        'if statement: (m move):',
+        move,
+        ', travel',
+        travel,
+        'travel-move',
+        travel - move,
+        'moveFix',
+        moveFix
+      );
+      var n = travel - move;
+      move = move + n;
+      // moveFix = move + n;
+      console.log('if statement: (m move):', move, ', n', n);
+      movieCards.style.transform = `translate(-${move}px)`;
+    } else if (move < travel && travel - move > moveFix) {
+      console.log(
+        'elseif statement: (m move):',
+        move,
+        ', travel',
+        travel,
+        ' travel-move',
+        travel - move,
+        'moveFix',
+        moveFix
+      );
+      move = move + moveFix;
+      movieCards.style.transform = `translate(-${move}px)`;
+
+      console.log('elseif statement:--  (move):', move);
+    }
+
+    console.log('clicked');
+  });
+  chevLeft.addEventListener('click', () => {
+    if (move > 0) {
+      // console.log('move:', move)
+
+      console.log(
+        'move:',
+        move,
+        'moveFix',
+        moveFix,
+        'movie-moveFix',
+        move - moveFix
+      );
+
+      move = move - moveFix;
+      movieCards.style.transform = `translate(-${move}px)`;
+    }
+    moveFix = clientWidth1 - 300;
+    console.log('clicked');
+  });
 }
 
 form.addEventListener('submit', (e) => {
@@ -272,37 +439,3 @@ form.addEventListener('submit', (e) => {
     window.location.reload();
   }
 });
-
-// const chevRight = document.querySelectorAll('.link-test');
-// const chevleft = document.querySelectorAll('.chevron-left');
-// console.log(chevRight);
-// console.log(chevleft);
-
-// const movieCards1 = document.querySelector('.movie-cards-1');
-
-// const chevLeft = document.getElementById('chevron-left-1');
-// const chevRight = document.getElementById('chevron-right-1');
-// const chevleft = document.querySelector('#chevron-left-1');
-console.log(chevLeft);
-console.log(chevLeft);
-console.log(chevLeft);
-
-// let iRight = 0;
-// let iLeft = 0;
-
-// chevRight.forEach((item) => {
-//   iRight++;
-//   console.log(iRight);
-//   item.addEventListener('mouseover', () => {
-//     console.log('clicked');
-//   });
-// });
-
-// chevleft.forEach((item, idx) => {
-//   console.log('hi');
-//   iLeft++;
-//   console.log(iLeft);
-//   item.addEventListener('mouseover', () => {
-//     console.log('clicked', idx);
-//   });
-// });

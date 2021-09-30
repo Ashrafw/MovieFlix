@@ -16,7 +16,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: relative;
+
       background-color: rgba(0, 0, 0, 0.6);
       .logo {
         font-size: 2rem;
@@ -44,9 +44,10 @@
         }
       }
       .form-search {
+        position: relative;
         form {
-          display: flex;
-          justify-content: flex-end;
+          // display: flex;
+          // justify-content: flex-end;
           width: 10%;
           color: rgb(255, 255, 255);
 
@@ -68,16 +69,18 @@
             width: 240px;
             border: solid 1px rgb(189, 0, 0);
           }
+        }
+        p {
+          position: absolute;
+          right: 6px;
+          top: 0;
+          i {
+            text-decoration: none;
 
-          a {
-            i {
-              text-decoration: none;
-              position: absolute;
-              color: white;
-              right: 7px;
-              transform: translate(-50%, 50%);
-              font-size: 1rem;
-            }
+            color: rgba(255, 255, 255, 0.534);
+
+            transform: translate(-50%, 50%);
+            font-size: 1rem;
           }
         }
       }
